@@ -1,16 +1,26 @@
 package com.svalero.zapatillas;
+import com.svalero.zapatillas.dao.BaseDatos;
 import com.svalero.zapatillas.dao.ZapatillaDao;
-import com.svalero.zapatillas.domain.Zapatilla;
+
+import java.sql.Connection;
 import java.util.Scanner;
 
 public class MenuUsuario {
     private Scanner teclado;
+    private BaseDatos baseDatos;
+    private Connection connection;
 
     public MenuUsuario() {
         teclado = new Scanner(System.in);
     }
 
+    public void conectar(){
+        BaseDatos baseDatos = new BaseDatos();
+        connection = baseDatos.getConnection();
+    }
+
     public void mostrarMenu(){
+        conectar();
         String opcion = null;
 
         do {
@@ -32,7 +42,7 @@ public class MenuUsuario {
     }
 
     public void verCatalogo(){
-        ZapatillaDao zapatillaDao = new ZapatillaDao();
+        ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
         zapatillaDao.verTodo();
     }
 
@@ -40,7 +50,7 @@ public class MenuUsuario {
         boolean encontrado = false;
         System.out.println("Búsqueda por modelo: ");
         String modelo = teclado.nextLine();
-        ZapatillaDao zapatillaDao = new ZapatillaDao();
+        ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
         zapatillaDao.buscarModelo(modelo);
         //TODO mostrar la infroacion de la zapatilla
     }

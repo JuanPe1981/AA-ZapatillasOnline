@@ -1,20 +1,28 @@
 package com.svalero.zapatillas;
 
+import com.svalero.zapatillas.dao.BaseDatos;
 import com.svalero.zapatillas.dao.ZapatillaDao;
 import com.svalero.zapatillas.domain.Zapatilla;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
 import java.util.Scanner;
 
 public class MenuAdministrador {
     private Scanner teclado;
+    private BaseDatos baseDatos;
+    private Connection connection;
 
     public MenuAdministrador() {
         teclado = new Scanner(System.in);
     }
 
+    public void conectar() {
+        BaseDatos baseDatos = new BaseDatos();
+        connection = baseDatos.getConnection();
+    }
+
     public void mostrarMenu() {
+        conectar();
         String opcion = null;
 
         do {
@@ -58,7 +66,7 @@ public class MenuAdministrador {
         System.out.print("Precio: ");
         float precio = Float.parseFloat(teclado.nextLine());
         Zapatilla zapatilla = new Zapatilla(modelo.trim(), color.trim(), numero, precio);
-        ZapatillaDao zapatillaDao = new ZapatillaDao();
+        ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
         zapatillaDao.añadir(zapatilla);
         System.out.println("La zapatilla se añadio correctamente");
 
@@ -67,7 +75,7 @@ public class MenuAdministrador {
     public void eliminarZapatilla() {
         System.out.println("Modelo de Zapatilla a eliminar: ");
         String modelo = teclado.nextLine();
-        ZapatillaDao zapatillaDao = new ZapatillaDao();
+        ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
         zapatillaDao.borrar(modelo);
     }
 
@@ -75,7 +83,7 @@ public class MenuAdministrador {
         boolean encontrado = false;
         System.out.println("Búsqueda por modelo: ");
         String modelo = teclado.nextLine();
-        ZapatillaDao zapatillaDao = new ZapatillaDao();
+        ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
         zapatillaDao.buscarModelo(modelo);
         //TODO buscar de la base de datos - Zapatillas
 
@@ -88,8 +96,8 @@ public class MenuAdministrador {
         boolean modificado = false;
         System.out.println("Modelo de zapatilla a modificar el precio: ");
         String modelo = teclado.nextLine();
-        ZapatillaDao zapatillaDao = new ZapatillaDao();
-        zapatillaDao.modificar(modelo)
+        ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
+        zapatillaDao.modificar(modelo);
         //TODO Modificar de la base de datos - zapatillas
 
         if (!modificado)
@@ -97,7 +105,7 @@ public class MenuAdministrador {
     }
 
     public void verCatalogo() {
-        ZapatillaDao zapatillaDao = new ZapatillaDao();
+        ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
         zapatillaDao.verTodo();
     }
 }

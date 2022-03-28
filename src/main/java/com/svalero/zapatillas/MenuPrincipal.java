@@ -1,17 +1,27 @@
 package com.svalero.zapatillas;
 
+import com.svalero.zapatillas.dao.BaseDatos;
+
+import java.sql.Connection;
 import java.util.Scanner;
 
 public class MenuPrincipal {
     private Scanner teclado;
+    private BaseDatos baseDatos;
+    private Connection connection;
 
 
     public MenuPrincipal() {
         teclado = new Scanner(System.in);
+    }
 
+    public void conectar(){
+        BaseDatos baseDatos = new BaseDatos();
+        connection = baseDatos.getConnection();
     }
 
     public void mostrarMenu() {
+        conectar();
         String opcion = null;
 
         do {
