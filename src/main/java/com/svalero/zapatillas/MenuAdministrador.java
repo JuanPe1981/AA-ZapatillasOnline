@@ -64,11 +64,7 @@ public class MenuAdministrador {
         System.out.println("Nombre de Zapatilla a eliminar: ");
         String nombre = teclado.nextLine();
         //TODO Eliminas de la base de datos - Zapatillas
-        boolean eliminado = catalogoZapatillas.removeIf(zapatilla -> zapatilla.getNombre().equals(nombre));
-        if (eliminado)
-            System.out.println("Zapatilla eliminada correctamente");
-        else
-            System.out.println("No se pudo eliminar. El modelo de zapatilla no existe");
+
     }
 
     public void buscarZapatilla() {
@@ -76,17 +72,7 @@ public class MenuAdministrador {
         System.out.println("Búsqueda por nombre: ");
         String nombre = teclado.nextLine();
         //TODO buscar de la base de datos - Zapatillas
-        for (Zapatilla zapatilla : catalogoZapatillas) {
-            if (zapatilla.getNombre().contains(nombre)) {
-                System.out.println("Zapatilla encontrada");
-                System.out.println(zapatilla.getNombre());
-                System.out.println(zapatilla.getColor());
-                System.out.println(zapatilla.getNumero());
-                System.out.println(zapatilla.getPrecio());
-                System.out.println();
-                encontrado = true;
-            }
-        }
+
         if (!encontrado)
             System.out.println("No se encuentra ese modelo de zapatilla.");
         System.out.println();
@@ -97,36 +83,12 @@ public class MenuAdministrador {
         System.out.println("Nombre de zapatilla a modificar el precio: ");
         String nombre = teclado.nextLine();
         //TODO Modificar de la base de datos - zapatillas
-        for (Zapatilla zapatilla : catalogoZapatillas) {
-            if (zapatilla.getNombre().equalsIgnoreCase(nombre)) {
-                System.out.println("Nuevo nombre: ");
-                String nuevoNombre = teclado.nextLine();
-                System.out.println("Nuevo color: ");
-                String nuevoColor = teclado.nextLine();
-                System.out.println("Nuevo número: ");
-                int nuevoNumero = Integer.parseInt(teclado.nextLine());
-                System.out.println("Nuevo precio: ");
-                float nuevoPrecio = Float.parseFloat(teclado.nextLine());
-                zapatilla.setNombre(nuevoNombre);
-                zapatilla.setColor(nuevoColor);
-                zapatilla.setNumero(nuevoNumero);
-                zapatilla.setPrecio(nuevoPrecio);
-                System.out.println("Zapatilla modificada correctamente.");
-                modificado = true;
-            }
-        }
+
         if (!modificado)
             System.out.println("No se pudo modificar la zapatilla.");
     }
 
     public void verCatalogo() {
         //TODO Ver catalogo de la base de datos - Zapatillas
-        for (Zapatilla zapatilla : catalogoZapatillas) {
-            System.out.println("Modelo: " + zapatilla.getNombre());
-            System.out.println("Color:  " + zapatilla.getColor());
-            System.out.println("Número: " + zapatilla.getNumero());
-            System.out.println("Precio: " + zapatilla.getPrecio());
-            System.out.println();
-        }
     }
 }

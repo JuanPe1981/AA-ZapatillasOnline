@@ -32,13 +32,6 @@ public class MenuUsuario {
 
     public void verCatalogo(){
         //TODO Ver en la base de datos
-        for (Zapatilla zapatilla : catalogoZapatillas) {
-            System.out.println("Modelo: " + zapatilla.getNombre());
-            System.out.println("Color:  " + zapatilla.getColor());
-            System.out.println("Número: " + zapatilla.getNumero());
-            System.out.println("Precio: " + zapatilla.getPrecio());
-            System.out.println();
-        }
     }
 
     public void buscarZapatilla(){
@@ -46,17 +39,7 @@ public class MenuUsuario {
         System.out.println("Búsqueda por nombre: ");
         String nombre = teclado.nextLine();
         //TODO Buscar en la base de datos
-        for (Zapatilla zapatilla : catalogoZapatillas) {
-            if (zapatilla.getNombre().contains(nombre)) {
-                System.out.println("Zapatilla encontrada");
-                System.out.println(zapatilla.getNombre());
-                System.out.println(zapatilla.getColor());
-                System.out.println(zapatilla.getNumero());
-                System.out.println(zapatilla.getPrecio());
-                System.out.println();
-                encontrado = true;
-            }
-        }
+
         if (!encontrado)
             System.out.println("No se encuentra ese modelo de zapatilla.");
         System.out.println();
