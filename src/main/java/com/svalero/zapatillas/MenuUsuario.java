@@ -1,8 +1,10 @@
 package com.svalero.zapatillas;
 import com.svalero.zapatillas.dao.BaseDatos;
 import com.svalero.zapatillas.dao.ZapatillaDao;
+import com.svalero.zapatillas.domain.Zapatilla;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuUsuario {
@@ -36,17 +38,20 @@ public class MenuUsuario {
                     verCatalogo();
                     break;
                 case "2":
-                    buscarZapatilla();
+                    buscarModelo();
             }
         } while (!opcion.equals("3"));
     }
 
     public void verCatalogo(){
         ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
-        zapatillaDao.verTodo();
+        ArrayList<Zapatilla> zapatillas = zapatillaDao.verTodo();
+        for (Zapatilla zapatilla : zapatillas) {
+            System.out.println(zapatilla.getModelo());
+        }
     }
 
-    public void buscarZapatilla(){
+    public void buscarModelo (){
         boolean encontrado = false;
         System.out.println("Búsqueda por modelo: ");
         String modelo = teclado.nextLine();

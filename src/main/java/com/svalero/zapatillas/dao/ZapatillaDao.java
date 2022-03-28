@@ -4,7 +4,9 @@ import com.svalero.zapatillas.domain.Zapatilla;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ZapatillaDao {
 
@@ -38,8 +40,25 @@ public class ZapatillaDao {
         return null;
     }
 
-    public Zapatilla verTodo (){
-        return null;
+    public ArrayList<Zapatilla> verTodo (){
+        String sql = "SELECT * FROM ZAPATILLA";
+        ArrayList<Zapatilla> zapatillas = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Zapatilla zapatilla = new Zapatilla();
+                zapatilla.setModelo(resultSet.getString("modelo"));
+                zapatilla.setColor(resultSet.getString("color"));
+                zapatilla.setNumero(resultSet.getInt("numero"));
+                zapatilla.setPrecio(resultSet.getFloat("precio"));
+                zapatillas.add(zapatilla);
+            }
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
+        return zapatillas;
     }
 
     public Zapatilla buscarModelo (String modelo) {

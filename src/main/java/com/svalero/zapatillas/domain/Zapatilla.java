@@ -7,6 +7,8 @@ public class Zapatilla {
     private int numero;
     private float precio;
 
+    public Zapatilla() {}
+
     public Zapatilla(String modelo, String color, int numero, float precio){
         this.modelo = modelo;
         this.color = color;

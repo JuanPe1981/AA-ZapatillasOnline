@@ -5,6 +5,7 @@ import com.svalero.zapatillas.dao.ZapatillaDao;
 import com.svalero.zapatillas.domain.Zapatilla;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuAdministrador {
@@ -106,6 +107,9 @@ public class MenuAdministrador {
 
     public void verCatalogo() {
         ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
-        zapatillaDao.verTodo();
+        ArrayList<Zapatilla> zapatillas = zapatillaDao.verTodo();
+        for (Zapatilla zapatilla : zapatillas) {
+            System.out.println(zapatilla.getModelo());
+        }
     }
 }
