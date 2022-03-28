@@ -3,6 +3,8 @@ package com.svalero.zapatillas.dao;
 import com.svalero.zapatillas.domain.Zapatilla;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class ZapatillaDao {
 
@@ -12,8 +14,19 @@ public class ZapatillaDao {
         this.connection = connection;
     }
 
-    public Zapatilla añadir(Zapatilla zapatilla) {
-        return null;
+    public void añadir(Zapatilla zapatilla) {
+        String sql = "INSERT INTO Zapatilla (MODELO, COLOR, NUMERO, PRECIO) VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, zapatilla.getModelo());
+            statement.setString(2, zapatilla.getColor());
+            statement.setInt(3, zapatilla.getNumero());
+            statement.setFloat(4, zapatilla.getPrecio());
+            statement.executeUpdate();
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
     }
 
     public Zapatilla borrar(String modelo) {
@@ -25,7 +38,7 @@ public class ZapatillaDao {
         return null;
     }
 
-    public Zapatilla verTodo () {
+    public Zapatilla verTodo (){
         return null;
     }
 
