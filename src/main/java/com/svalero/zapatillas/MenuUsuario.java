@@ -48,6 +48,9 @@ public class MenuUsuario {
         ArrayList<Zapatilla> zapatillas = zapatillaDao.verTodo();
         for (Zapatilla zapatilla : zapatillas) {
             System.out.println(zapatilla.getModelo());
+            System.out.println(zapatilla.getColor());
+            System.out.println(zapatilla.getNumero());
+            System.out.println(zapatilla.getPrecio());
         }
     }
 

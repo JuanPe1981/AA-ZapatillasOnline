@@ -81,16 +81,21 @@ public class MenuAdministrador {
     }
 
     public void buscarZapatilla() {
-        boolean encontrado = false;
         System.out.println("Búsqueda por modelo: ");
         String modelo = teclado.nextLine();
         ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
-        zapatillaDao.buscarModelo(modelo);
-        //TODO buscar de la base de datos - Zapatillas
-
-        if (!encontrado)
+        ArrayList<Zapatilla> zapatillas = zapatillaDao.buscarModelo(modelo);
+        if (zapatillas == null){
             System.out.println("No se encuentra ese modelo de zapatilla.");
-        System.out.println();
+            return;
+        }
+        for (Zapatilla zapatilla : zapatillas) {
+            System.out.println(zapatilla.getModelo());
+            System.out.println(zapatilla.getColor());
+            System.out.println(zapatilla.getNumero());
+            System.out.println(zapatilla.getPrecio());
+        }
+
     }
 
     public void modificarZapatilla() {
@@ -107,9 +112,13 @@ public class MenuAdministrador {
 
     public void verCatalogo() {
         ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
+        //TODO propagar la excepción al menu de usuario
         ArrayList<Zapatilla> zapatillas = zapatillaDao.verTodo();
         for (Zapatilla zapatilla : zapatillas) {
             System.out.println(zapatilla.getModelo());
+            System.out.println(zapatilla.getColor());
+            System.out.println(zapatilla.getNumero());
+            System.out.println(zapatilla.getPrecio());
         }
     }
 }
