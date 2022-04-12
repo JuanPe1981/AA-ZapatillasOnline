@@ -76,38 +76,60 @@ public class MenuAdministrador {
     public void eliminarZapatilla() {
         System.out.println("Modelo de Zapatilla a eliminar: ");
         String modelo = teclado.nextLine();
+        System.out.println("Numero de Zapatilla a Eleminar: ");
+        int numero = Integer.parseInt(teclado.nextLine());
+
         ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
-        zapatillaDao.borrar(modelo);
+        boolean borrado = zapatillaDao.borrar(modelo, numero);
+        if (borrado) {
+            System.out.println("El modelo de zapatilla borrado correctamente");
+        } else
+            System.out.println("No se pudo borrar la zapatilla. No existe");
+
     }
 
     public void buscarZapatilla() {
         System.out.println("Búsqueda por modelo: ");
         String modelo = teclado.nextLine();
+
         ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
+
         ArrayList<Zapatilla> zapatillas = zapatillaDao.buscarModelo(modelo);
-        if (zapatillas == null){
-            System.out.println("No se encuentra ese modelo de zapatilla.");
+        if (zapatillas == null) {
+            System.out.println("Ese modelo no esta disponible");
             return;
         }
-        for (Zapatilla zapatilla : zapatillas) {
+        for (Zapatilla zapatilla : zapatillas){
             System.out.println(zapatilla.getModelo());
             System.out.println(zapatilla.getColor());
             System.out.println(zapatilla.getNumero());
             System.out.println(zapatilla.getPrecio());
+            System.out.println();
         }
-
     }
 
     public void modificarZapatilla() {
-        boolean modificado = false;
         System.out.println("Modelo de zapatilla a modificar el precio: ");
         String modelo = teclado.nextLine();
-        ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
-        zapatillaDao.modificar(modelo);
-        //TODO Modificar de la base de datos - zapatillas
+        System.out.println("Numero de zapatilla a modificar: ");
+        int numero = Integer.parseInt(teclado.nextLine());
+        //TODO Buscar libro antes de pedir datos
+        System.out.println("Nuevo modelo: ");
+        String nuevoModelo = teclado.nextLine();
+        System.out.println("Nuevo color: ");
+        String nuevoColor = teclado.nextLine();
+        System.out.println("Nuevo numero: ");
+        int nuevoNumero = Integer.parseInt(teclado.nextLine());
+        System.out.println("Nuevo Precio: ");
+        float nuevoPrecio = Float.parseFloat(teclado.nextLine());
+        Zapatilla nuevaZapatilla = new Zapatilla(nuevoModelo.trim(), nuevoColor.trim(), nuevoNumero, nuevoPrecio);
 
-        if (!modificado)
-            System.out.println("No se pudo modificar la zapatilla.");
+        ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
+        boolean modificado = zapatillaDao.modificar(modelo, numero, nuevaZapatilla);
+        if (modificado)
+            System.out.println("La Zapatilla se modifico correctamente");
+        else
+            System.out.println("La zapatilla no se pudo modificar. No existe");
     }
 
     public void verCatalogo() {
@@ -119,6 +141,7 @@ public class MenuAdministrador {
             System.out.println(zapatilla.getColor());
             System.out.println(zapatilla.getNumero());
             System.out.println(zapatilla.getPrecio());
+            System.out.println();
         }
     }
 }

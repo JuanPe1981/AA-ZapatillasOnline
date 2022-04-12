@@ -4,7 +4,9 @@ import com.svalero.zapatillas.dao.ZapatillaDao;
 import com.svalero.zapatillas.domain.Zapatilla;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class MenuUsuario {
@@ -51,15 +53,29 @@ public class MenuUsuario {
             System.out.println(zapatilla.getColor());
             System.out.println(zapatilla.getNumero());
             System.out.println(zapatilla.getPrecio());
+            System.out.println();
         }
     }
 
     public void buscarModelo (){
-        boolean encontrado = false;
         System.out.println("Búsqueda por modelo: ");
         String modelo = teclado.nextLine();
+
         ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
-        zapatillaDao.buscarModelo(modelo);
+
+        ArrayList<Zapatilla> zapatillas = zapatillaDao.buscarModelo(modelo);
+        if (zapatillas == null) {
+            System.out.println("Ese modelo no esta disponible");
+            return;
+        }
+        for (Zapatilla zapatilla : zapatillas){
+            System.out.println(zapatilla.getModelo());
+            System.out.println(zapatilla.getColor());
+            System.out.println(zapatilla.getNumero());
+            System.out.println(zapatilla.getPrecio());
+            System.out.println();
+        }
+
         //TODO mostrar la infroacion de la zapatilla
     }
 }
