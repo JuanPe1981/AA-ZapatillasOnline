@@ -23,8 +23,7 @@ public class PedidoDao {
 
         connection.setAutoCommit(false);
 
-        PreparedStatement pedidoStatement = connection.prepareStatement(pedidoSql,
-                PreparedStatement.RETURN_GENERATED_KEYS);
+        PreparedStatement pedidoStatement = connection.prepareStatement(pedidoSql);
         pedidoStatement.setString(1, UUID.randomUUID().toString());
         pedidoStatement.setInt(2, usuario.getIdUsuario());
         pedidoStatement.setDate(3, new Date(System.currentTimeMillis()));
@@ -68,8 +67,6 @@ public class PedidoDao {
         }
 
         return pedido;
-
-
     }
 
     public Pedido getPedido() {
