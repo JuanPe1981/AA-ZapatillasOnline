@@ -1,6 +1,9 @@
 package com.svalero.zapatillas.domain;
 
+import com.svalero.zapatillas.util.DateUtils;
+
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +12,7 @@ public class Pedido {
     private int idPedido;
     private String code;
     private boolean pagado;
-    private Date fechaPedido;
+    private LocalDate fechaPedido;
 
     private Usuario usuario;
     private List<Zapatilla> zapatillas;
@@ -18,7 +21,7 @@ public class Pedido {
         zapatillas = new ArrayList<>();
     }
 
-    public Pedido(String code, boolean pagado, Date fechaPedido, Usuario usuario) {
+    public Pedido(String code, boolean pagado, LocalDate fechaPedido, Usuario usuario) {
         this.code = code;
         this.pagado = pagado;
         this.fechaPedido = fechaPedido;
@@ -50,11 +53,18 @@ public class Pedido {
         this.pagado = pagado;
     }
 
-    public Date getFechaPedido() {
+    public LocalDate getFechaPedido() {
         return fechaPedido;
     }
 
-    public void setFechaPedido(Date fechaPedido) {
+    public void setFechaPedido(LocalDate fechaPedido) {
         this.fechaPedido = fechaPedido;
+    }
+
+    @Override
+    public String toString() {
+        return "Código: " + code + "\n" +
+                "Pagado: " + pagado + "\n" +
+                "Fecha: " + DateUtils.formatLocalDate(fechaPedido) + "\n";
     }
 }

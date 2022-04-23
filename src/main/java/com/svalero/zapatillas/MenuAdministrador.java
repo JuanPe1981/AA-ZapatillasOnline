@@ -4,13 +4,16 @@ import com.svalero.zapatillas.dao.BaseDatos;
 import com.svalero.zapatillas.dao.PedidoDao;
 import com.svalero.zapatillas.dao.UsuarioDao;
 import com.svalero.zapatillas.dao.ZapatillaDao;
+import com.svalero.zapatillas.domain.Pedido;
 import com.svalero.zapatillas.domain.Usuario;
 import com.svalero.zapatillas.domain.Zapatilla;
 import com.svalero.zapatillas.exception.UsuarioNoFuncionaException;
 import com.svalero.zapatillas.exception.ZapatillaYaExisteException;
+import com.svalero.zapatillas.util.DateUtils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -49,6 +52,7 @@ public class MenuAdministrador {
             System.out.println("7. Registrar pedido");
             System.out.println("8. Ver detalles de un pedido");
             System.out.println("9. Marcar un pedido como pagado");
+            System.out.println(("10. Ver pedidos entre fechas"));
             System.out.println("S. Salir");
             System.out.println("Opción: ");
             opcion = teclado.nextLine();
@@ -81,6 +85,9 @@ public class MenuAdministrador {
                 case "9":
                     pedidoPagado();
                     break;
+                case "10":
+                    pedidosEntreFechas();
+                    break;
             }
         } while (!opcion.equals("S"));
     }
@@ -100,7 +107,8 @@ public class MenuAdministrador {
             System.exit(0);
         } catch (UsuarioNoFuncionaException unfe) {
             System.out.println(unfe.getMessage());
-            System.exit(0);
+            MenuPrincipal menuPrincipal = new MenuPrincipal();
+            menuPrincipal.mostrarMenu();
         }
     }
 
@@ -237,7 +245,7 @@ public class MenuAdministrador {
             pedidodao.addPedido(currentUser, zapatillas);
             System.out.println("El pedido se ha creado correctamente");
         } catch (SQLException sqle) {
-            System.out.println("No se ha podido ver el catálogo de zapatilla. Intentalo de nuevo.");
+            System.out.println("No se ha podido hacer el pedido. Intentalo de nuevo.");
             sqle.printStackTrace();
         }
     }
@@ -246,6 +254,25 @@ public class MenuAdministrador {
     }
 
     private void pedidoPagado() {
+    }
+
+    private void pedidosEntreFechas() {
+        System.out.println("Desde: (dd.MM.yyyy)");
+        String desdeFechaString = teclado.nextLine();
+        System.out.println("Hasta: (dd.MM.yyyy)");
+        String hastaFechaString = teclado.nextLine();
+
+        LocalDate desdeFecha = DateUtils.parseLocalDate(desdeFechaString);
+        LocalDate hastaFecha = DateUtils.parseLocalDate(hastaFechaString);
+
+        PedidoDao pedidoDao = new PedidoDao(connection);
+        try {
+            List<Pedido> pedidos = pedidoDao.getPedidosEntreFechas(desdeFecha, hastaFecha);
+            pedidos.forEach(System.out::println);
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con la base de datos. Intentelo de nuevo");
+            sqle.printStackTrace();
+        }
     }
 
 }
