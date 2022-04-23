@@ -42,6 +42,7 @@ public class MenuPrincipal {
         } while (!opcion.equals("3"));
     }
 
+
     public void menuUsuario() {
         MenuUsuario menuUsuario = new MenuUsuario();
         menuUsuario.mostrarMenu();

@@ -6,12 +6,10 @@ import com.svalero.zapatillas.domain.Zapatilla;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class MenuUsuario {
     private Scanner teclado;
-    private BaseDatos baseDatos;
     private Connection connection;
 
     public MenuUsuario() {
@@ -31,7 +29,8 @@ public class MenuUsuario {
             System.out.println("Catalogo de Zapatillas");
             System.out.println("1. Ver catalogo");
             System.out.println("2. Buscar Zapatilla");
-            System.out.println("3. Salir");
+            System.out.println("3. Buscar Zapatilla por Modelo, Color y Número");
+            System.out.println("4. Salir");
             System.out.println("Opción: ");
             opcion = teclado.nextLine();
 
@@ -40,42 +39,72 @@ public class MenuUsuario {
                     verCatalogo();
                     break;
                 case "2":
-                    buscarModelo();
+                    buscarZapatilla();
+                    break;
+                case "3":
+                    buscarZapatillaModeloColorNumero();
             }
-        } while (!opcion.equals("3"));
+        } while (!opcion.equals("4"));
     }
 
     public void verCatalogo(){
         ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
-        ArrayList<Zapatilla> zapatillas = zapatillaDao.verTodo();
-        for (Zapatilla zapatilla : zapatillas) {
-            System.out.println(zapatilla.getModelo());
-            System.out.println(zapatilla.getColor());
-            System.out.println(zapatilla.getNumero());
-            System.out.println(zapatilla.getPrecio());
-            System.out.println();
+        try {
+            ArrayList<Zapatilla> zapatillas = zapatillaDao.verTodo();
+            for (Zapatilla zapatilla : zapatillas) {
+                System.out.println(zapatilla.getModelo());
+                System.out.println(zapatilla.getColor());
+                System.out.println(zapatilla.getNumero());
+                System.out.println(zapatilla.getPrecio());
+                System.out.println();
+            }
+        } catch (SQLException sqle){
+            System.out.println("No se ha podido ver el catálogo de zapatillas. Intentalo de nuevo.");
         }
+
     }
 
-    public void buscarModelo (){
+    public void buscarZapatilla (){
         System.out.println("Búsqueda por modelo: ");
         String modelo = teclado.nextLine();
 
         ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
+        try {
+            ArrayList<Zapatilla> zapatillas = zapatillaDao.buscarModelo(modelo);
+            if (zapatillas == null) {
+                System.out.println("Ese modelo no esta disponible");
+                return;
+            }
+            for (Zapatilla zapatilla : zapatillas){
+                System.out.println(zapatilla.getModelo());
+                System.out.println(zapatilla.getColor());
+                System.out.println(zapatilla.getNumero());
+                System.out.println(zapatilla.getPrecio());
+                System.out.println();
+            }
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido encontrar la zapatilla. Intentalo de nuevo.");
+        }
+    }
 
-        ArrayList<Zapatilla> zapatillas = zapatillaDao.buscarModelo(modelo);
-        if (zapatillas == null) {
-            System.out.println("Ese modelo no esta disponible");
+    public void buscarZapatillaModeloColorNumero(){
+        System.out.println("Buscar modelo: ");
+        String modelo = teclado.nextLine();
+        System.out.println(("De color: "));
+        String color = teclado.nextLine();
+        System.out.println("De que numero: ");
+        int numero = Integer.parseInt(teclado.nextLine());
+
+        ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
+        Zapatilla zapatilla = zapatillaDao.buscarZapatillaColorNumero(modelo, color, numero);
+        if (zapatilla == null) {
+            System.out.println("Esta zapatilla con ese número no esta disponible.");
             return;
         }
-        for (Zapatilla zapatilla : zapatillas){
-            System.out.println(zapatilla.getModelo());
-            System.out.println(zapatilla.getColor());
-            System.out.println(zapatilla.getNumero());
-            System.out.println(zapatilla.getPrecio());
-            System.out.println();
-        }
 
-        //TODO mostrar la infroacion de la zapatilla
+        System.out.println(zapatilla.getModelo());
+        System.out.println(zapatilla.getColor());
+        System.out.println(zapatilla.getNumero());
+        System.out.println(zapatilla.getPrecio());
     }
 }

@@ -1,20 +1,36 @@
 package com.svalero.zapatillas.domain;
 
+import java.sql.Date;
+
 public class Usuario {
+    private int idUsuario;
     private String usuario;
-    private String contraseña;
+    private String password;
     private String nombre;
     private String apellido;
     private String dni;
+    private Date fechaNacimiento;
     private int telefono;
 
-    public Usuario(String usuario, String contraseña, String nombre, String apellido, String dni, int telefono) {
+    public Usuario(){
+    }
+
+    public Usuario(String usuario, String password, String nombre, String apellido, String dni, Date fechaNacimiento, int telefono) {
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.password = password;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
+        this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int id) {
+        this.idUsuario = id;
     }
 
     public String getUsuario() {
@@ -25,12 +41,12 @@ public class Usuario {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNombre() {
@@ -55,6 +71,14 @@ public class Usuario {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public int getTelefono() {
