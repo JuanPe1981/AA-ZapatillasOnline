@@ -7,8 +7,8 @@ public class UsuarioAdministrador extends Usuario {
     private int numeroEmpleado;
     private boolean trabajadorActivo;
 
-    public UsuarioAdministrador(String usuario, String contraseña, String nombre, String apellido, String dni, Date fechaNacimiento, int telefono, int numeroEmpleado, boolean trabajadorActivo){
-        super (usuario, contraseña, nombre, apellido, dni, (java.sql.Date) fechaNacimiento, telefono);
+    public UsuarioAdministrador(String usuario, String contraseña, String nombre, String apellido, String dni, LocalDate fechaNacimiento, int telefono, int numeroEmpleado, boolean trabajadorActivo){
+        super (usuario, contraseña, nombre, apellido, dni, fechaNacimiento, telefono);
         this.numeroEmpleado = numeroEmpleado;
         this.trabajadorActivo = trabajadorActivo;
     }

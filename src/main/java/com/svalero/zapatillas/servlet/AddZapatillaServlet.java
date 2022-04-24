@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class AddZapatillaServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
@@ -27,7 +27,7 @@ public class AddZapatillaServlet extends HttpServlet {
         int numero = Integer.parseInt(request.getParameter("numero"));
         float precio = Float.parseFloat(request.getParameter("precio"));
 
-        Zapatilla zapatilla = new Zapatilla(modelo,color,numero,precio);
+        Zapatilla zapatilla = new Zapatilla(modelo.trim(),color.trim(),numero,precio);
 
         BaseDatos baseDatos = new BaseDatos();
         ZapatillaDao zapatillaDao = new ZapatillaDao(baseDatos.getConnection());
@@ -37,7 +37,7 @@ public class AddZapatillaServlet extends HttpServlet {
         } catch (SQLException sqle) {
             out.println("<p style='color:red>Se ha producido un error al leer los datos</p>");
             sqle.printStackTrace();
-        }catch (ZapatillaYaExisteException zyee) {
+        } catch (ZapatillaYaExisteException zyee) {
             out.println("<p style='color:red'>Ya existe una zapatilla de ese modelo con ese número</p>");
             zyee.printStackTrace();
         }

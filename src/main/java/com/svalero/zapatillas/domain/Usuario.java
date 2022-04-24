@@ -1,6 +1,7 @@
 package com.svalero.zapatillas.domain;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Usuario {
     private int idUsuario;
@@ -9,13 +10,13 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String dni;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private int telefono;
 
     public Usuario(){
     }
 
-    public Usuario(String usuario, String password, String nombre, String apellido, String dni, Date fechaNacimiento, int telefono) {
+    public Usuario(String usuario, String password, String nombre, String apellido, String dni, LocalDate fechaNacimiento, int telefono) {
         this.usuario = usuario;
         this.password = password;
         this.nombre = nombre;
@@ -73,11 +74,11 @@ public class Usuario {
         this.dni = dni;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

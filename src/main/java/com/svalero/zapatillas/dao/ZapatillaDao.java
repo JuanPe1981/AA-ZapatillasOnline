@@ -1,6 +1,7 @@
 package com.svalero.zapatillas.dao;
 
 import com.svalero.zapatillas.domain.Zapatilla;
+import com.svalero.zapatillas.exception.ZapatillaNoExisteException;
 import com.svalero.zapatillas.exception.ZapatillaYaExisteException;
 
 import java.sql.Connection;
@@ -78,7 +79,7 @@ public class ZapatillaDao {
         return zapatillas;
     }
 
-    public ArrayList<Zapatilla> buscarModelo (String modelo) throws SQLException {
+    public ArrayList<Zapatilla> buscarModelo (String modelo) throws SQLException, ZapatillaNoExisteException {
         String sql = "SELECT * FROM ZAPATILLAS ZAP WHERE ZAP.MODELO = ?";
 
         ArrayList<Zapatilla> zapatillas = new ArrayList<>();

@@ -8,6 +8,7 @@ import com.svalero.zapatillas.domain.Pedido;
 import com.svalero.zapatillas.domain.Usuario;
 import com.svalero.zapatillas.domain.Zapatilla;
 import com.svalero.zapatillas.exception.UsuarioNoFuncionaException;
+import com.svalero.zapatillas.exception.ZapatillaNoExisteException;
 import com.svalero.zapatillas.exception.ZapatillaYaExisteException;
 import com.svalero.zapatillas.util.DateUtils;
 
@@ -173,7 +174,10 @@ public class MenuAdministrador {
             }
         }catch (SQLException sqle) {
             System.out.println("No se ha podido encontrar la zapatilla. Intentalo de nuevo.");
+        } catch (ZapatillaNoExisteException znee) {
+            System.out.println("El modelo de zapatilla no está disponible");
         }
+
     }
 
     public void modificarZapatilla() {

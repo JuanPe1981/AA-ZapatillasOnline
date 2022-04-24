@@ -2,6 +2,7 @@ package com.svalero.zapatillas.dao;
 
 import com.svalero.zapatillas.domain.Usuario;
 import com.svalero.zapatillas.exception.UsuarioYaExisteException;
+import com.svalero.zapatillas.util.DateUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,8 +18,8 @@ public class UsuarioDao {
         this.connection = connection;
     }
 
-    public void añadirUsuario(Usuario usuario) throws SQLException {
-        String sql = "INSERT INTO USUARIO (USUARIO, CONTRASEÑA, NOMBRE, APELLIDO, DNI, FECHANACIMIENTO, TELEFONO) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public void añadirUsuario(Usuario usuario) throws SQLException, UsuarioYaExisteException {
+        String sql = "INSERT INTO USUARIOS (USUARIO, PASSWORD, NOMBRE, APELLIDO, DNI, FECHA_NACIMIENTO, TELEFONO) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, usuario.getUsuario());
@@ -26,7 +27,7 @@ public class UsuarioDao {
         statement.setString(3, usuario.getNombre());
         statement.setString(4, usuario.getApellido());
         statement.setString(5, usuario.getDni());
-        statement.setDate(6, usuario.getFechaNacimiento());
+        statement.setDate(6, DateUtils.toSqlDate(usuario.getFechaNacimiento()));
         statement.setInt(7, usuario.getTelefono());
         statement.executeUpdate();
     }
@@ -47,6 +48,7 @@ public class UsuarioDao {
             usuario.setNombre(resultSet.getString("nombre"));
             usuario.setApellido(resultSet.getString("apellido"));
             usuario.setDni(resultSet.getString("dni"));
+            usuario.setFechaNacimiento(DateUtils.toLocalDateFromSql(resultSet.getDate("fecha_nacimiento")));
             usuario.setTelefono(resultSet.getInt("telefono"));
         }
 
@@ -68,8 +70,9 @@ public class UsuarioDao {
             usuario.setNombre(resultSet.getString("nombre"));
             usuario.setApellido(resultSet.getString("apellido"));
             usuario.setDni(resultSet.getString("dni"));
+            usuario.setFechaNacimiento(DateUtils.toLocalDateFromSql(resultSet.getDate("fechaNacimiento")));
             usuario.setTelefono(resultSet.getInt("telefono"));
-            usuario.setFechaNacimiento(resultSet.getDate("fechaNacimiento"));
+
         }
 
         return Optional.ofNullable(usuario);

@@ -2,6 +2,7 @@ package com.svalero.zapatillas;
 import com.svalero.zapatillas.dao.BaseDatos;
 import com.svalero.zapatillas.dao.ZapatillaDao;
 import com.svalero.zapatillas.domain.Zapatilla;
+import com.svalero.zapatillas.exception.ZapatillaNoExisteException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -84,6 +85,8 @@ public class MenuUsuario {
             }
         } catch (SQLException sqle) {
             System.out.println("No se ha podido encontrar la zapatilla. Intentalo de nuevo.");
+        } catch (ZapatillaNoExisteException znee) {
+            System.out.println("El modelo de zapatilla no está disponible");
         }
     }
 
