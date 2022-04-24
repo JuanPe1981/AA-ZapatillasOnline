@@ -149,6 +149,28 @@ public class ZapatillaDao {
         return Optional.ofNullable(zapatilla);
     }
 
+    public ArrayList<Zapatilla> buscarNumero (int numero) throws SQLException, ZapatillaNoExisteException {
+        String sql = "SELECT * FROM ZAPATILLAS ZAP WHERE ZAP.NUMERO = ?";
+
+        ArrayList<Zapatilla> zapatillas = new ArrayList<>();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, numero);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            Zapatilla zapatilla = new Zapatilla();
+            zapatilla.setIdZapatilla(resultSet.getInt("idzapatilla"));
+            zapatilla.setModelo(resultSet.getString("modelo"));
+            zapatilla.setColor(resultSet.getString("color"));
+            zapatilla.setNumero(resultSet.getInt("numero"));
+            zapatilla.setPrecio(resultSet.getFloat("precio"));
+            zapatillas.add(zapatilla);
+        }
+
+        return zapatillas;
+    }
+
+
     public boolean existeZapatilla(String modelo, String color, int numero) throws SQLException {
         Zapatilla zapatilla = buscarZapatillaColorNumero(modelo, color, numero);
         return zapatilla != null;

@@ -4,7 +4,7 @@
 <form action="buscarmodelozapatilla" method="post">
     Usuario:
     <input type="text" name="modelo"/><br/>
-    <input type="submit" value="Registrar"/>
+    <input type="submit" value="Buscar"/>
 </form>
 </body>
 </html>
