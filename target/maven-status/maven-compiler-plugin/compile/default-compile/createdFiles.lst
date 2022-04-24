@@ -1,7 +1,5 @@
 com\svalero\zapatillas\domain\UsuarioAdministrador.class
 com\svalero\zapatillas\dao\ZapatillaDao.class
-com\svalero\zapatillas\MenuUsuario.class
-com\svalero\zapatillas\MenuPrincipal.class
 com\svalero\zapatillas\exception\UsuarioNoFuncionaException.class
 com\svalero\zapatillas\dao\PedidoDao.class
 com\svalero\zapatillas\domain\Usuario.class
@@ -9,9 +7,7 @@ com\svalero\zapatillas\dao\UsuarioDao.class
 com\svalero\zapatillas\domain\Zapatilla.class
 com\svalero\zapatillas\servlet\BuscarModeloColorNumeroZapatillaServlet.class
 com\svalero\zapatillas\exception\UsuarioYaExisteException.class
-com\svalero\zapatillas\Aplicacion.class
 com\svalero\zapatillas\servlet\GetZapatillaServlet.class
-com\svalero\zapatillas\MenuAdministrador.class
 com\svalero\zapatillas\util\DateUtils.class
 com\svalero\zapatillas\exception\ZapatillaNoExisteException.class
 com\svalero\zapatillas\servlet\BorrarZapatillaServlet.class
