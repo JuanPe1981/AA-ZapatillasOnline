@@ -1,6 +1,7 @@
 package com.svalero.zapatillas.dao;
 
 import com.svalero.zapatillas.domain.Usuario;
+import com.svalero.zapatillas.exception.UsuarioNoFuncionaException;
 import com.svalero.zapatillas.exception.UsuarioYaExisteException;
 import com.svalero.zapatillas.util.DateUtils;
 
@@ -76,6 +77,23 @@ public class UsuarioDao {
         }
 
         return Optional.ofNullable(usuario);
+    }
+
+    public boolean modificar(int idUsuario, Usuario usuario) throws SQLException, UsuarioNoFuncionaException {
+        String sql = "UPDATE USUARIOS USU SET USU.USUARIO = ?, USU.PASSWORD = ?, USU.NOMBRE = ?, USU.APELLIDO = ?, USU.DNI = ?, USU.FECHA_NACIMIENTO = ?, USU.TELEFONO = ? WHERE USU.IDUSUARIO = ? ";
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(8, idUsuario);
+        statement.setString(1, usuario.getUsuario());
+        statement.setString(2, usuario.getPassword());
+        statement.setString(3, usuario.getNombre());
+        statement.setString(4, usuario.getApellido());
+        statement.setString(5, usuario.getDni());
+        statement.setDate(6, DateUtils.toSqlDate(usuario.getFechaNacimiento()));
+        statement.setInt(7, usuario.getTelefono());
+
+        int ejecuciones = statement.executeUpdate();
+        return ejecuciones == 1;
     }
 
     public boolean existeUsuario(String nombreUsuario) throws SQLException {

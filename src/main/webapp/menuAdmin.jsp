@@ -16,7 +16,7 @@
         <h3>Opciones de gestión usuarios<h3>
         <p><a href="addUsuario.jsp">Añadir Usuario nuevo</a></p>
         <p><a href="modificarUsuario.jsp">Modificar Usuario</a></p>
-        <p><a href="eliminarUsuario.jsp">Modificar Usuario</a></p>
+        <p><a href="eliminarUsuario.jsp">Eliminar Usuario</a></p>
          <h3>Opciones de gestión usuarios administradores<h3>
         <p><a href="addUsuarioAdministrador.jsp">Añadir Usuario Administrador nuevo</a></p>
         <p><a href="modificarUsuarioAdministrador.jsp">Modificar Usuario</a></p>

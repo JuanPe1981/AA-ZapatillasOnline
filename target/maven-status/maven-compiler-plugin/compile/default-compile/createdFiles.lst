@@ -19,6 +19,7 @@ com\svalero\zapatillas\servlet\GetZapatillasServlet.class
 com\svalero\zapatillas\exception\ZapatillaYaExisteException.class
 com\svalero\zapatillas\dao\BaseDatos.class
 com\svalero\zapatillas\servlet\AddZapatillaServlet.class
+com\svalero\zapatillas\servlet\ModificarUsuarioServlet.class
 com\svalero\zapatillas\servlet\BuscarModeloZapatillaServlet.class
 com\svalero\zapatillas\servlet\ModificarZapatillaServlet.class
 com\svalero\zapatillas\servlet\BuscarNumeroZapatillaServlet.class
