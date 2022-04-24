@@ -99,15 +99,17 @@ public class MenuUsuario {
         int numero = Integer.parseInt(teclado.nextLine());
 
         ZapatillaDao zapatillaDao = new ZapatillaDao(connection);
-        Zapatilla zapatilla = zapatillaDao.buscarZapatillaColorNumero(modelo, color, numero);
-        if (zapatilla == null) {
-            System.out.println("Esta zapatilla con ese número no esta disponible.");
-            return;
-        }
+        try {
+            Zapatilla zapatilla = zapatillaDao.buscarZapatillaColorNumero(modelo, color, numero);
+                System.out.println(zapatilla.getModelo());
+                System.out.println(zapatilla.getColor());
+                System.out.println(zapatilla.getNumero());
+                System.out.println(zapatilla.getPrecio());
+            } catch (SQLException sqle) {
+                System.out.println("No se ha podido encontrar la zapatilla. Intentalo de nuevo.");
+            } catch (ZapatillaNoExisteException znee) {
+                System.out.println("El modelo de zapatilla no está disponible");
+            }
 
-        System.out.println(zapatilla.getModelo());
-        System.out.println(zapatilla.getColor());
-        System.out.println(zapatilla.getNumero());
-        System.out.println(zapatilla.getPrecio());
-    }
+        }
 }

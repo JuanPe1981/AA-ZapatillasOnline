@@ -101,7 +101,7 @@ public class ZapatillaDao {
     }
 
 
-    public Zapatilla buscarZapatillaColorNumero (String modelo, String color, int numero) {
+    public Zapatilla buscarZapatillaColorNumero (String modelo, String color, int numero) throws SQLException, ZapatillaNoExisteException {
         String sql = "SELECT * FROM ZAPATILLAS ZAP WHERE ZAP.MODELO = ? AND ZAP.COLOR = ? AND ZAP.NUMERO = ?";
         Zapatilla zapatilla = null;
 
@@ -172,8 +172,15 @@ public class ZapatillaDao {
 
 
     public boolean existeZapatilla(String modelo, String color, int numero) throws SQLException {
+    try {
         Zapatilla zapatilla = buscarZapatillaColorNumero(modelo, color, numero);
         return zapatilla != null;
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido encontrar la zapatilla. Intentalo de nuevo.");
+        } catch (ZapatillaNoExisteException znee) {
+            System.out.println("El modelo de zapatilla no está disponible");
+        }
+        return false;
     }
 
     public boolean noExisteZapatilla (String modelo) throws SQLException {
