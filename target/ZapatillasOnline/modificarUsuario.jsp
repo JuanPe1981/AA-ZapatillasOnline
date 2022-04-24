@@ -1,6 +1,6 @@
 <html>
 <body>
-<h2>Registrar nuevo modelo de zapatilla</h2>
+<h2>Modificar Usuario</h2>
 <form action="modificarusuario" method="post">
     Id Usuario a Modificar:
     <input type="text" name="idusuario"/><br/>

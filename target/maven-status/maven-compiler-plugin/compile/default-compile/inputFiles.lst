@@ -5,6 +5,7 @@ C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programaci
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\dao\UsuarioAdministradorDao.java
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\domain\Zapatilla.java
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\servlet\BuscarModeloZapatillaServlet.java
+C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\servlet\BorrarUsuarioServlet.java
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\MenuAdministrador.java
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\dao\UsuarioDao.java
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\domain\UsuarioAdministrador.java
@@ -19,6 +20,7 @@ C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programaci
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\servlet\BuscarNumeroZapatillaServlet.java
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\servlet\GetZapatillasServlet.java
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\dao\ZapatillaDao.java
+C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\servlet\ModificarUsuarioServlet.java
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\MenuUsuario.java
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\util\Constante.java
 C:\Users\juanp\OneDrive\1º Ciclo superior multiplataforma\Curso 1º\01 Programación\02 Segunda Evaluacion\AA\TiendaOnline\ZapatillasOnline\src\main\java\com\svalero\zapatillas\servlet\BuscarModeloColorNumeroZapatillaServlet.java

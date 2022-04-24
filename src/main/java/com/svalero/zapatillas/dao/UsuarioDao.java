@@ -96,6 +96,17 @@ public class UsuarioDao {
         return ejecuciones == 1;
     }
 
+    public boolean borrar(int idUsuario) throws SQLException, UsuarioNoFuncionaException{
+        String sql = "DELETE FROM USUARIOS USU WHERE USU.IDUSUARIO = ?";
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,idUsuario);
+
+        int ejecuciones = statement.executeUpdate();
+
+        return ejecuciones == 1;
+    }
+
     public boolean existeUsuario(String nombreUsuario) throws SQLException {
         Optional<Usuario> usuario = buscarUsuario(nombreUsuario);
         return usuario.isPresent();
