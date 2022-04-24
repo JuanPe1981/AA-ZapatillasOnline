@@ -14,11 +14,13 @@ com\svalero\zapatillas\servlet\GetZapatillaServlet.class
 com\svalero\zapatillas\MenuAdministrador.class
 com\svalero\zapatillas\util\DateUtils.class
 com\svalero\zapatillas\exception\ZapatillaNoExisteException.class
+com\svalero\zapatillas\servlet\BorrarZapatillaServlet.class
 com\svalero\zapatillas\servlet\GetZapatillasServlet.class
 com\svalero\zapatillas\exception\ZapatillaYaExisteException.class
 com\svalero\zapatillas\dao\BaseDatos.class
 com\svalero\zapatillas\servlet\AddZapatillaServlet.class
 com\svalero\zapatillas\servlet\BuscarModeloZapatillaServlet.class
+com\svalero\zapatillas\servlet\ModificarZapatillaServlet.class
 com\svalero\zapatillas\servlet\BuscarNumeroZapatillaServlet.class
 com\svalero\zapatillas\util\Constante.class
 com\svalero\zapatillas\dao\UsuarioAdministradorDao.class

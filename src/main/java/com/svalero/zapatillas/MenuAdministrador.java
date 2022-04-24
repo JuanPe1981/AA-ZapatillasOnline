@@ -150,6 +150,8 @@ public class MenuAdministrador {
                 System.out.println("No se pudo borrar la zapatilla. No existe");
         }catch (SQLException sqle){
             System.out.println("No se ha podido eliminar la zapatilla. Intentalo de nuevo.");
+        } catch (ZapatillaNoExisteException znee) {
+            System.out.println(znee.getMessage());
         }
     }
 
@@ -205,6 +207,8 @@ public class MenuAdministrador {
                 System.out.println("La zapatilla no se pudo modificar. No existe");
         }catch (SQLException sqle) {
             System.out.println("No se ha podido modificar la zapatilla. Intentalo de nuevo.");
+        }catch (ZapatillaNoExisteException znee) {
+            System.out.println(znee.getMessage());
         }
 
     }

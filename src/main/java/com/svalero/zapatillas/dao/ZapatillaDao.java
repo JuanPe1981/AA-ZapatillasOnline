@@ -33,7 +33,7 @@ public class ZapatillaDao {
         statement.executeUpdate();
     }
 
-    public boolean borrar(String modelo, int numero) throws SQLException {
+    public boolean borrar(String modelo, int numero) throws SQLException, ZapatillaNoExisteException {
         String sql = "DELETE FROM ZAPATILLAS ZAP WHERE ZAP.MODELO = ? AND ZAP.NUMERO = ?";
 
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -44,7 +44,7 @@ public class ZapatillaDao {
         return ejecuciones == 1;
     }
 
-    public boolean modificar(String modelo, int numero, Zapatilla zapatilla) throws SQLException {
+    public boolean modificar(String modelo, int numero, Zapatilla zapatilla) throws SQLException, ZapatillaNoExisteException {
         String sql ="UPDATE ZAPATILLAS ZAP SET ZAP.MODELO = ?, ZAP.COLOR = ?, ZAP.NUMERO = ?, ZAP.PRECIO = ? WHERE ZAP.MODELO = ? AND ZAP.NUMERO = ?";
 
         PreparedStatement statement = connection.prepareStatement(sql);

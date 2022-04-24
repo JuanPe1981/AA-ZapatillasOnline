@@ -39,7 +39,6 @@ public class AddZapatillaServlet extends HttpServlet {
             sqle.printStackTrace();
         } catch (ZapatillaYaExisteException zyee) {
             out.println("<p style='color:red'>Ya existe una zapatilla de ese modelo con ese número</p>");
-            zyee.printStackTrace();
         }
     }
 }

@@ -11,7 +11,7 @@
         <p><a href="buscarZapatillasT.jsp">Buscar Zapatilla por talla</a></p>
         <p><a href="buscarZapatillasMCT.jsp">Buscar por modelo, color y talla</a></p>
         <p><a href="addZapatilla.jsp">Añadir Zapatilla al catalogo</a></p>
-        <p><a href="eliminarZapatilla.jsp">Borrar Zapatilla del catalogo</a></p>
+        <p><a href="borrarZapatilla.jsp">Borrar Zapatilla del catalogo</a></p>
         <p><a href="modificarZapatilla.jsp">Modificar Zapatilla del catalogo</a></p>
         <h3>Opciones de gestión usuarios<h3>
         <p><a href="addUsuario.jsp">Añadir Usuario nuevo</a></p>
