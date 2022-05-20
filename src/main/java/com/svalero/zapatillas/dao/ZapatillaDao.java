@@ -126,6 +126,24 @@ public class ZapatillaDao {
         return zapatilla;
     }
 
+    public ArrayList<Zapatilla> buscarTodo(String searchText) throws SQLException {
+        String sql = "SELECT * FROM ZAPATILLAS WHERE INSTR(UPPER(MODELO), UPPER(?)) != 0 OR INSTR(UPPER(COLOR), UPPER(?)) != 0 ORDER BY MODELO";
+        ArrayList<Zapatilla> zapatillas = new ArrayList<>();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, searchText);
+        statement.setString(2, searchText);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            Zapatilla zapatilla = fromResultSet(resultSet);
+            zapatillas.add(zapatilla);
+        }
+
+        return zapatillas;
+    }
+
+
+
     public Optional<Zapatilla> buscarZapatillaModelo (String modelo) {
         String sql = "SELECT * FROM ZAPATILLAS ZAP WHERE ZAP.MODELO = ?";
         Zapatilla zapatilla = null;
@@ -148,6 +166,26 @@ public class ZapatillaDao {
 
         return Optional.ofNullable(zapatilla);
     }
+
+    public Optional<Zapatilla> buscarZapatillaId (int id) throws SQLException {
+        String sql = "SELECT * FROM ZAPATILLAS ZAP WHERE ZAP.IDZAPATILLA = ?";
+        Zapatilla zapatilla = null;
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            zapatilla = new Zapatilla();
+            zapatilla.setIdZapatilla(resultSet.getInt("idzapatilla"));
+            zapatilla.setModelo(resultSet.getString("modelo"));
+            zapatilla.setColor(resultSet.getString("color"));
+            zapatilla.setNumero(resultSet.getInt("numero"));
+            zapatilla.setPrecio(resultSet.getFloat("precio"));
+        }
+
+        return Optional.ofNullable(zapatilla);
+    }
+
+
 
     public ArrayList<Zapatilla> buscarNumero (int numero) throws SQLException, ZapatillaNoExisteException {
         String sql = "SELECT * FROM ZAPATILLAS ZAP WHERE ZAP.NUMERO = ?";
@@ -186,5 +224,15 @@ public class ZapatillaDao {
     public boolean noExisteZapatilla (String modelo) throws SQLException {
         Optional<Zapatilla> zapatilla = buscarZapatillaModelo(modelo);
         return !zapatilla.isPresent();
+    }
+
+    private Zapatilla fromResultSet(ResultSet resultSet) throws SQLException {
+        Zapatilla zapatilla = new Zapatilla();
+        zapatilla.setIdZapatilla(resultSet.getInt("idzapatilla"));
+        zapatilla.setModelo(resultSet.getString("modelo"));
+        zapatilla.setColor(resultSet.getString("color"));
+        zapatilla.setNumero(resultSet.getInt("numero"));
+        zapatilla.setPrecio(resultSet.getFloat("precio"));
+        return zapatilla;
     }
 }

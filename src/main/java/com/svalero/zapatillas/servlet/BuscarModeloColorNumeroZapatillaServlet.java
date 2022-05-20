@@ -31,7 +31,7 @@ public class BuscarModeloColorNumeroZapatillaServlet extends HttpServlet {
         ZapatillaDao zapatillaDao = new ZapatillaDao(baseDatos.getConnection());
         try {
             Zapatilla zapatilla = zapatillaDao.buscarZapatillaColorNumero(modelo, color, numero);
-                out.println("<li><p><a href='zapatilla.jsp?id=" + zapatilla.getIdZapatilla() + "'> Modelo: " + zapatilla.getModelo() + "/  Color: " + zapatilla.getColor() + "/ Numero: " + zapatilla.getNumero() + "/ Precio: " + zapatilla.getPrecio() +" €" + "</a></p></li>");
+                out.println("<li><p><a href='zapatillas.jsp?id=" + zapatilla.getIdZapatilla() + "'> Modelo: " + zapatilla.getModelo() + "/  Color: " + zapatilla.getColor() + "/ Numero: " + zapatilla.getNumero() + "/ Precio: " + zapatilla.getPrecio() +" €" + "</a></p></li>");
             out.println("</ul>");
             baseDatos.desconectar();
         } catch (SQLException sqle) {

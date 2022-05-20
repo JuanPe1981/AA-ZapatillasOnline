@@ -15,7 +15,8 @@
             <p><a href="menuAdmin.jsp">Menú de Administrador</a></p>
             <p><a href="menuUsuario.jsp">Menú de Usuario</a></p>
             <p><a href="addUsuario.jsp">Registrarse</a></p>
-            <p><a href="zapatilla.jsp">Ver catálogo</a></p>
+            <p><a href="buscador.jsp">Buscador</a></p>
+            <p><a href="zapatillas.jsp">Ver catálogo</a></p>
             </ul>
         </div>
 
