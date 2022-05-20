@@ -80,12 +80,12 @@ public class ZapatillaDao {
     }
 
     public ArrayList<Zapatilla> buscarModelo (String modelo) throws SQLException, ZapatillaNoExisteException {
-        String sql = "SELECT * FROM ZAPATILLAS ZAP WHERE ZAP.MODELO = ?";
+        String sql = "SELECT * FROM ZAPATILLAS ZAP WHERE UPPER(ZAP.MODELO) LIKE UPPER(?)";
 
         ArrayList<Zapatilla> zapatillas = new ArrayList<>();
 
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, modelo);
+        statement.setString(1, "%"+modelo+"%");
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
             Zapatilla zapatilla = new Zapatilla();
