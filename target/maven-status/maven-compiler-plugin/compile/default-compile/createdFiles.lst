@@ -1,6 +1,7 @@
 com\svalero\zapatillas\domain\UsuarioAdministrador.class
 com\svalero\zapatillas\dao\ZapatillaDao.class
 com\svalero\zapatillas\servlet\BuscarZapatillasServlet.class
+com\svalero\zapatillas\servlet\LoginUsuarioServlet.class
 com\svalero\zapatillas\exception\UsuarioNoFuncionaException.class
 com\svalero\zapatillas\dao\PedidoDao.class
 com\svalero\zapatillas\domain\Usuario.class

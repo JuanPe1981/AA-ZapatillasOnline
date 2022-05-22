@@ -30,7 +30,7 @@ public class BorrarZapatillaServlet extends HttpServlet {
         ZapatillaDao zapatillaDao = new ZapatillaDao(baseDatos.getConnection());
         try {
             zapatillaDao.borrar(modelo, numero);
-            out.println("<p style='color:green'>Zapatilla registrada correctamente</p>");
+            out.println("<p style='color:green'>Zapatilla borrada correctamente</p>");
         } catch (SQLException sqle) {
             out.println("<p style='color:red>Se ha producido un error al leer los datos</p>");
             sqle.printStackTrace();

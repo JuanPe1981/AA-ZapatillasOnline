@@ -60,7 +60,7 @@ public class ZapatillaDao {
     }
 
     public ArrayList<Zapatilla> verTodo () throws SQLException{
-        String sql = "SELECT * FROM ZAPATILLAS";
+        String sql = "SELECT * FROM ZAPATILLAS ORDER BY MODELO";
 
         ArrayList<Zapatilla> zapatillas = new ArrayList<>();
 
@@ -165,6 +165,25 @@ public class ZapatillaDao {
         }
 
         return Optional.ofNullable(zapatilla);
+    }
+
+    public ArrayList<Zapatilla> buscarModeloColorNumero (String modelo, String color, int numero) throws SQLException {
+        String sql = "SELECT * FROM ZAPATILLAS ZAP WHERE ZAP.MODELO = ? AND ZAP.COLOR = ? AND ZAP.NUMERO = ?";
+
+        ArrayList<Zapatilla> zapatillas = new ArrayList<>();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, modelo);
+        statement.setString(2, color);
+        statement.setInt(3, numero);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()){
+            Zapatilla zapatilla = fromResultSet(resultSet);
+            zapatillas.add(zapatilla);
+        }
+
+        return zapatillas;
+
     }
 
     public Optional<Zapatilla> buscarZapatillaId (int id) throws SQLException {

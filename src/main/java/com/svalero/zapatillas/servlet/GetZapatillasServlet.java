@@ -36,7 +36,7 @@ public class GetZapatillasServlet extends HttpServlet {
             out.println("<ul class ='list-group'>");
             List<Zapatilla> zapatillas = zapatillaDao.verTodo();
             for (Zapatilla zapatilla : zapatillas) {
-                out.println("<li class='list-group-item list-group-item-action'><a href='zapatillas.jsp?id=" + zapatilla.getIdZapatilla() + "'> Modelo: " + zapatilla.getModelo() + "/  Color: " + zapatilla.getColor() + "</a></li>");
+                out.println("<li class='list-group-item list-group-item-action'><a href='zapatilla.jsp?id=" + zapatilla.getIdZapatilla() + "'> Modelo: " + zapatilla.getModelo() + "/  Color: " + zapatilla.getColor() + "</a></li>");
             }
             out.println("</ul>");
             baseDatos.desconectar();

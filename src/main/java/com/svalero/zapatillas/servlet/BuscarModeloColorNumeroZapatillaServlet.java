@@ -30,17 +30,15 @@ public class BuscarModeloColorNumeroZapatillaServlet extends HttpServlet {
         BaseDatos baseDatos = new BaseDatos();
         ZapatillaDao zapatillaDao = new ZapatillaDao(baseDatos.getConnection());
         try {
-            Zapatilla zapatilla = zapatillaDao.buscarZapatillaColorNumero(modelo, color, numero);
-                out.println("<li><p><a href='zapatillas.jsp?id=" + zapatilla.getIdZapatilla() + "'> Modelo: " + zapatilla.getModelo() + "/  Color: " + zapatilla.getColor() + "/ Numero: " + zapatilla.getNumero() + "/ Precio: " + zapatilla.getPrecio() +" €" + "</a></p></li>");
+            ArrayList<Zapatilla> zapatillas = zapatillaDao.buscarModeloColorNumero(modelo, color, numero);
+            for (Zapatilla zapatilla : zapatillas) {
+                out.println("<li><p><a href='zapatilla.jsp?id=" + zapatilla.getIdZapatilla() + "'> Modelo: " + zapatilla.getModelo() + "/  Color: " + zapatilla.getColor() + "/ Numero: " + zapatilla.getNumero() + "/ Precio: " + zapatilla.getPrecio() +" €" + "</a></p></li>");
+            }
             out.println("</ul>");
             baseDatos.desconectar();
         } catch (SQLException sqle) {
             out.println("<p style='color:red'>Se ha producido un error al leer los datos</p>");
             sqle.printStackTrace();
-        } catch (ZapatillaNoExisteException znee) {
-            out.println("<p style='color:red'>Ese modelo de zapatilla no está disponible</p>");
-            znee.printStackTrace();
         }
-
     }
 }

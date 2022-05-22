@@ -9,17 +9,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $("form").on("submit", function(event) {
-                        event.preventDefault();
-                        var formValue = $(this).serialize();
-                        $.post("addpedido", formValue, function(data) {
-                            $("#result").html(data);
-                        });
-                });
-            });
-        </script>
+
 
         <div class = "container">
             <h2>Hacer pedido</h2>

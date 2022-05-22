@@ -107,6 +107,30 @@ public class UsuarioDao {
         return ejecuciones == 1;
     }
 
+    public Optional<Usuario> login(String nombreUsuario, String password) throws SQLException {
+        String sql = "SELECT * FROM USUARIOS WHERE USUARIO = ? AND PASSWORD = ?";
+        Usuario usuario = null;
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, nombreUsuario);
+        statement.setString(2, password);
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            usuario = fromResultSet(resultSet);
+        }
+
+        return Optional.ofNullable(usuario);
+    }
+
+    public Usuario fromResultSet(ResultSet resultSet) throws SQLException {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(resultSet.getInt("idusuario"));
+        usuario.setUsuario(resultSet.getString("usuario"));
+        usuario.setNombre(resultSet.getString("nombre"));
+
+        return usuario;
+    }
+
     public boolean existeUsuario(String nombreUsuario) throws SQLException {
         Optional<Usuario> usuario = buscarUsuario(nombreUsuario);
         return usuario.isPresent();

@@ -30,7 +30,7 @@ public class BuscarNumeroZapatillaServlet extends HttpServlet {
         try {
             ArrayList<Zapatilla> zapatillas = zapatillaDao.buscarNumero(numero);
             for (Zapatilla zapatilla : zapatillas) {
-                out.println("<li><p><a href='zapatillas.jsp?id=" + zapatilla.getIdZapatilla() + "'> Modelo: " + zapatilla.getModelo() + "/  Color: " + zapatilla.getColor() + "/ Numero: " + zapatilla.getNumero() + "/ Precio: " + zapatilla.getPrecio() +" €" + "</a></p></li>");
+                out.println("<li><p><a href='zapatilla.jsp?id=" + zapatilla.getIdZapatilla() + "'> Modelo: " + zapatilla.getModelo() + "/  Color: " + zapatilla.getColor() + "/ Numero: " + zapatilla.getNumero() + "/ Precio: " + zapatilla.getPrecio() +" €" + "</a></p></li>");
             }
             out.println("</ul>");
             baseDatos.desconectar();

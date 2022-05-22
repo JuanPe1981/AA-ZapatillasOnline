@@ -26,8 +26,8 @@
             <p><a href="borrarUsuario.jsp">Eliminar Usuario</a></p>
              <h3>Opciones de gestión usuarios administradores</h3>
             <p><a href="addUsuarioAdministrador.jsp">Añadir Usuario Administrador nuevo</a></p>
-            <p><a href="modificarUsuarioAdministrador.jsp">Modificar Usuario</a></p>
-            <p><a href="eliminarUsuarioAdministrador.jsp">Modificar Usuario</a></p>
+            <p><a href="modificarUsuarioAdministrador.jsp">Modificar Usuario Administrador</a></p>
+            <p><a href="eliminarUsuarioAdministrador.jsp">Eliminar Usuario Administrador</a></p>
             <h3>Gestión de pedidos</h3>
             <p><a href="pedidoZapatillas.jsp">Hacer pedido</a></p>
             <p><a href="pagarPedido.jsp">Marcar pedido como pagado</a></p>

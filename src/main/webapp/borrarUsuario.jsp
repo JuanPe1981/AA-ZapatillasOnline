@@ -14,7 +14,7 @@
                 $("form").on("submit", function(event) {
                         event.preventDefault();
                         var formValue = $(this).serialize();
-                        $.post("addzapatilla", formValue, function(data) {
+                        $.post("borrarusuario", formValue, function(data) {
                             $("#result").html(data);
                         });
                 });

@@ -30,7 +30,7 @@ public class BorrarUsuarioServlet extends HttpServlet {
         UsuarioDao usuarioDao = new UsuarioDao(baseDatos.getConnection());
         try {
             usuarioDao.borrar(idUsuario);
-            out.println("<p style='color:green'>Zapatilla registrada correctamente</p>");
+            out.println("<p style='color:green'>Usuario borrado correctamente</p>");
         } catch (SQLException sqle) {
             out.println("<p style='color:red>Se ha producido un error al leer los datos</p>");
             sqle.printStackTrace();
