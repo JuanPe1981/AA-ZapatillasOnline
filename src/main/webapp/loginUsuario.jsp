@@ -47,7 +47,7 @@
       <label for="floatingInput">Usuario</label>
     </div>
     <div class="form-floating">
-      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
+      <input type="text" name="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
       <label for="floatingPassword">Contraseña</label>
     </div>
 

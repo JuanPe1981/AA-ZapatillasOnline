@@ -1,6 +1,7 @@
 package com.svalero.zapatillas.dao;
 
 import com.svalero.zapatillas.domain.Usuario;
+import com.svalero.zapatillas.domain.Zapatilla;
 import com.svalero.zapatillas.exception.UsuarioNoFuncionaException;
 import com.svalero.zapatillas.exception.UsuarioYaExisteException;
 import com.svalero.zapatillas.util.DateUtils;
@@ -9,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class UsuarioDao {
@@ -18,6 +20,47 @@ public class UsuarioDao {
     public UsuarioDao(Connection connection) {
         this.connection = connection;
     }
+
+    public ArrayList<Usuario> verTodo () throws SQLException{
+        String sql = "SELECT * FROM USUARIOS ORDER BY IDUSUARIO";
+
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(resultSet.getInt("idusuario"));
+            usuario.setUsuario(resultSet.getString("usuario"));
+            usuario.setNombre(resultSet.getString("nombre"));
+            usuario.setApellido(resultSet.getString("apellido"));
+            usuario.setDni(resultSet.getString("dni"));
+            usuario.setFechaNacimiento(DateUtils.toLocalDateFromSql(resultSet.getDate("fecha_nacimiento")));
+            usuario.setTelefono(resultSet.getInt("telefono"));
+            usuarios.add(usuario);
+        }
+
+        return usuarios;
+    }
+
+    public ArrayList<Usuario> buscarTodo(String searchText) throws SQLException {
+        String sql = "SELECT * FROM USUARIOS WHERE INSTR(UPPER(USUARIO), UPPER(?)) != 0 OR INSTR(UPPER(NOMBRE), UPPER(?)) !=0 OR INSTR(UPPER(APELLIDO), UPPER(?)) != 0 OR INSTR(TELEFONO, ?) != 0 ORDER BY IDUSUARIO";
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, searchText);
+        statement.setString(2, searchText);
+        statement.setString(3, searchText);
+        statement.setString(4, searchText);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            Usuario usuario = fromResultSet(resultSet);
+            usuarios.add(usuario);
+        }
+
+        return usuarios;
+    }
+
 
     public void añadirUsuario(Usuario usuario) throws SQLException, UsuarioYaExisteException {
         String sql = "INSERT INTO USUARIOS (USUARIO, PASSWORD, NOMBRE, APELLIDO, DNI, FECHA_NACIMIENTO, TELEFONO) VALUES (?, ?, ?, ?, ?, ?, ?)";
