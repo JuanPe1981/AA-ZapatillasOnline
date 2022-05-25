@@ -25,14 +25,11 @@
         <div class = "container">
             <h2>Menú de usuario</h2>
             <ul>
-            <li><a href="catalogo">Ver catálogo</a></li>
+            <li><a href="zapatillas.jsp">Ver catálogo</a></li>
             <li><a href="buscarZapatillasM.jsp">Buscar Zapatilla por modelo</a></li>
             <li><a href="buscarZapatillasT.jsp">Buscar Zapatilla por talla</a></li>
             <li><a href="buscarZapatillasMCT.jsp">Buscar por modelo, color y talla</a></li>
-            <li><a href="addPedido.jsp">Hacer pedido</a></li>
-            <li><a href="pagarPedido.jsp">Pagar pedido</a></li>
-            <li><a href="consultarPedidos.jsp">Consultar todos los pedidos</a></li>
-            <li><a href="consultarPedidosEntreFechas.jsp">Consultar pedidos entre fechas</a></li>
+            <li><a href="pedidos.jsp">Consultar todos mis pedidos</a></li>
             <li><a href="logout-Usuario">Cerrar sesión</a></li>
             </ul>
             <div class="alert alert-success" role="alert">

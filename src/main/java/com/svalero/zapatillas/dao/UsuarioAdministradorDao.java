@@ -71,6 +71,24 @@ public class UsuarioAdministradorDao {
         return usuarios;
     }
 
+    public ArrayList<UsuarioAdministrador> buscarTodo(String searchText) throws SQLException {
+        String sql = "SELECT * FROM USUARIOS_ADMINISTRADOR WHERE INSTR(UPPER(USUARIO), UPPER(?)) != 0 OR INSTR(UPPER(NOMBRE), UPPER(?)) !=0 OR INSTR(UPPER(APELLIDO), UPPER(?)) != 0 OR INSTR(TELEFONO, ?) != 0 ORDER BY IDEMPLEADO";
+        ArrayList<UsuarioAdministrador> usuariosAdministrador = new ArrayList<>();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, searchText);
+        statement.setString(2, searchText);
+        statement.setString(3, searchText);
+        statement.setString(4, searchText);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            UsuarioAdministrador usuarioAdministrador = fromResultSet(resultSet);
+            usuariosAdministrador.add(usuarioAdministrador);
+        }
+
+        return usuariosAdministrador;
+    }
+
 
     public UsuarioAdministrador fromResultSet(ResultSet resultSet) throws SQLException {
         UsuarioAdministrador usuarioAdministrador = new UsuarioAdministrador();

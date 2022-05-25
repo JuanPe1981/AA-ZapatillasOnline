@@ -179,6 +179,20 @@ public class UsuarioDao {
         return usuario.isPresent();
     }
 
+    public Optional<Usuario> buscarUsuarioId(int idUsuario) throws SQLException {
+        String sql = "SELECT * FROM USUARIOS WHERE IDUSUARIO = ?";
+        Usuario usuario = null;
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, idUsuario);
+        ResultSet resultSet =statement.executeQuery();
+        if (resultSet.next()) {
+            usuario = fromResultSet(resultSet);
+        }
+
+        return Optional.ofNullable(usuario);
+    }
+
 
 
 

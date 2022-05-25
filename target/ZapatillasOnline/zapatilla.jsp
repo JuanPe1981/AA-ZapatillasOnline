@@ -3,6 +3,13 @@
 <%@ page import = "com.svalero.zapatillas.domain.Zapatilla" %>
 <%@ page import="java.util.Optional" %>
 <%@ page import = "java.sql.SQLException" %>
+<%@ page import = "com.svalero.zapatillas.domain.Usuario"%>
+<%@ page import = "com.svalero.zapatillas.domain.UsuarioAdministrador"%>
+
+<%
+    Usuario currentUsuario = (Usuario) session.getAttribute("currentUsuario");
+    UsuarioAdministrador currentAdministrador = (UsuarioAdministrador) session.getAttribute("currentAdministrador");
+%>
 
 
 <html>
@@ -29,7 +36,13 @@
             <h5 class="card-title"><%= zapatilla.getModelo() %></h5>
             <p class="card-text">Color: <strong><%= zapatilla.getColor() %></strong></p>
             <p class="card-text">Precio: <strong><%= zapatilla.getPrecio() %></strong></p>
-            <a href="buy?id=<%= zapatilla.getIdZapatilla() %>" class="btn btn-primary">Comprar</a>
+            <%
+                if (currentUsuario != null) {
+            %>
+            <a href="comprar?id=<%= zapatilla.getIdZapatilla() %>" class="btn btn-primary">Comprar</a>
+            <%
+                }
+            %>
           </div>
           <div class="card-footer text-muted">
             Numero:  <strong><%= zapatilla.getNumero() %></strong>

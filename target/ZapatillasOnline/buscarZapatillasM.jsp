@@ -24,9 +24,11 @@
         <div class = "container">
             <h2>Buscar modelo de zapatilla</h2>
             <form action="buscarmodelozapatilla" method="post">
-            Modelo:
-            <input type="text" name="modelo"/><br/>
-            <input type="submit" value="Buscar"/>
+                <div class="mb-2">
+                    <label for="text" class="form-label">Modelo</label>
+                    <input name="modelo" type="text" class="form-control w-25" id="modelo">
+                </div>
+                    <button type="submit" class="btn btn-primary" value="Buscar">Buscar</button>
             </form>
             <div id="result"></div>
         </div>

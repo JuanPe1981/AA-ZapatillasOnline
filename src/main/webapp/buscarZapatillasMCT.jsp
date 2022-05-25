@@ -24,14 +24,19 @@
         <div class = "container">
             <h2>Buscar modelo de zapatilla</h2>
             <form action="buscarmodelocolornumerozapatilla" method="post">
-            Modelo:
-            <input type="text" name="modelo"/><br/>
-            Color:
-            <input type="text" name="color"/><br/>
-            Numero:
-            <input type="text" name="numero"/><br/>
-
-            <input type="submit" value="Buscar"/>
+                <div class="mb-2">
+                    <label for="text" class="form-label">Modelo:</label>
+                    <input name="modelo" type="text" class="form-control w-25" id="modelo">
+                </div>
+                <div class="mb-2">
+                    <label for="text" class="form-label">Color:</label>
+                    <input name="color" type="text" class="form-control w-25" id="color">
+                </div>
+                <div class="mb-2">
+                    <label for="text" class="form-label">Color:</label>
+                    <input name="numero" type="text" class="form-control w-25" id="numero">
+                </div>
+                    <button type="submit" class="btn btn-primary" value="Buscar">Buscar</button>
             </form>
             <div id="result"></div>
         </div>

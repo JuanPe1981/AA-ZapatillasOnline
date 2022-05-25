@@ -61,6 +61,22 @@ public class Pedido {
         this.fechaPedido = fechaPedido;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<Zapatilla> getZapatillas() {
+        return zapatillas;
+    }
+
+    public void setZapatillas(List<Zapatilla> zapatillas) {
+        this.zapatillas = zapatillas;
+    }
+
     @Override
     public String toString() {
         return "Código: " + code + "\n" +

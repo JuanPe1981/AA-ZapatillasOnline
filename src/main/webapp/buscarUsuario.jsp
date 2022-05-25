@@ -20,7 +20,7 @@
         });
     </script>
     <div class="container">
-        <h2>Buscador de zapatillas</h2>
+        <h2>Buscador de usuarios</h2>
         <form>
             <div class="mb-2">
                 <label for="searchtext" class="form-label">Cadena de búsqueda</label>

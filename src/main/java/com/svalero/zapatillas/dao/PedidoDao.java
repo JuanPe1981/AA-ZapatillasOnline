@@ -7,6 +7,7 @@ import com.svalero.zapatillas.util.DateUtils;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -70,9 +71,39 @@ public class PedidoDao {
         return pedido;
     }
 
-    public Pedido getPedido() {
-        return null;
+    public List<Pedido> getPedido() throws SQLException {
+        String sql = "SELECT * FROM PEDIDOS ORDER BY IDPEDIDO";
+
+        ArrayList<Pedido> pedidos = new ArrayList<>();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()){
+            Pedido pedido = fromResultSet(resultSet);
+            pedidos.add(pedido);
+        }
+
+        return pedidos;
     }
+
+    public List<Pedido> getPedidoUsuario(Usuario usuario) throws SQLException {
+        String sql = "SELECT * FROM PEDIDOS P INNER JOIN USUARIOS U ON P.IDUSUARIO = U.IDUSUARIO WHERE P.IDUSUARIO = ? ORDER BY P.IDPEDIDO";
+
+        ArrayList<Pedido> pedidos = new ArrayList<>();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, usuario.getIdUsuario());
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()){
+            Pedido pedido = fromResultSet(resultSet);
+            pedidos.add(pedido);
+        }
+
+        return pedidos;
+    }
+
 
     public void pagoPedido() {
 
@@ -97,5 +128,17 @@ public class PedidoDao {
         }
 
         return pedidos;
+    }
+    private Pedido fromResultSet(ResultSet resultSet) throws SQLException {
+        Pedido pedido = new Pedido();
+        pedido.setIdPedido(resultSet.getInt("idpedido"));
+        pedido.setCode(resultSet.getString("code"));
+        pedido.setFechaPedido(new java.util.Date(resultSet.getDate("fechapedido").getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        pedido.setPagado(resultSet.getBoolean("pagado"));
+        UsuarioDao usuarioDao = new UsuarioDao(connection);
+        String idUsuario = resultSet.getString("idusuario");
+        Usuario usuario = usuarioDao.buscarUsuarioId(Integer.parseInt(idUsuario)).get();
+        pedido.setUsuario(usuario);
+        return pedido;
     }
 }

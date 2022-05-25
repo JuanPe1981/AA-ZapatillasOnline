@@ -3,7 +3,13 @@
 <%@ page import = "com.svalero.zapatillas.domain.Zapatilla" %>
 <%@ page import = "java.sql.SQLException" %>
 <%@ page import = "java.util.List" %>
+<%@ page import = "com.svalero.zapatillas.domain.Usuario"%>
+<%@ page import = "com.svalero.zapatillas.domain.UsuarioAdministrador"%>
 
+<%
+    Usuario currentUsuario = (Usuario) session.getAttribute("currentUsuario");
+    UsuarioAdministrador currentAdministrador = (UsuarioAdministrador) session.getAttribute("currentAdministrador");
+%>
 
 <html>
     <%@ page language="java"
@@ -27,6 +33,15 @@
                 %>
                             <li class="list-group-item">
                                 <a target="_blank" href="zapatilla.jsp?id=<%= zapatilla.getIdZapatilla() %>"><%= zapatilla.getModelo() %></a>
+                                <%
+                                    if (currentAdministrador != null) {
+                                %>
+                                    <a href="modificarZapatilla.jsp?id=<%= zapatilla.getIdZapatilla() %>" class="btn btn-outline-warning">Modificar</a>
+                                    <a href="borrar-zapatilla?id=<%= zapatilla.getIdZapatilla() %>" class="btn btn-outline-danger">Eliminar</a>
+                                <%
+                                    }
+                                %>
+                            </li>
                 <%
                         }
                     } catch (SQLException sqle) {
